@@ -1,0 +1,81 @@
+/* Basic styles for the polygon editor */ 
+
+:root {
+    --primary-color: #0d2c54; /* Deep blue from logo */
+    --secondary-color: #f87060; /* Orange/coral from logo */
+    --light-gray: #f2f2f2;
+    --gray: #ccc;
+    --dark-gray: #333;
+}
+
+/* html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+} */
+
+.polygon-editor {
+    /* min-height: 100vh;
+    min-width: 100vw; */
+    height: 100vh;
+    /* width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-gray);
+    font-family: sans-serif;
+}
+
+.editor-header {
+    /* padding: 1rem; */
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.editor-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.left-panel {
+    width: 30%;
+    background-color: white;
+    /* padding: 1rem; */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-right: 1px solid var(--gray);
+}
+
+.right-panel {
+    width: 70%;
+    /* padding: 1rem; */
+    overflow-y: auto;
+}
+
+.toggles {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .editor-main {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+        border-right: none;
+    }
+} 

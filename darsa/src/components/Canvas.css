@@ -1,0 +1,38 @@
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.overlay-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.polygon {
+    fill: rgba(248, 112, 96, 0.4);
+    stroke: var(--secondary-color);
+    stroke-width: 2;
+}
+
+.polygon-point {
+    fill: var(--secondary-color);
+    stroke: white;
+    stroke-width: 2;
+    cursor: pointer;
+}
+
+.polygon-point:hover {
+    fill: var(--primary-color);
+} 
