@@ -1,70 +1,81 @@
 import React, { useState, useEffect } from 'react';
-import ImageList from './ImageList';
 import Canvas from './Canvas';
 import ToggleSwitch from './ToggleSwitch';
+import Sidebar from './Sidebar';
+import TopNavBar from './TopNavBar';
+import DataCollectionPanel from './DataCollectionPanel';
 import './PolygonEditor.css';
-import logo from '../assets/darsa.png';
 
-const dummyImages = Array.from({ length: 10 }, (_, i) => ({
-    id: i,
-    url: `https://picsum.photos/id/${i + 10}/400/300`,
-}));
+// Industrial warehouse image for the camera feed
+const cameraImage = "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80";
 
 const PolygonEditor = () => {
     const [isEditMode, setIsEditMode] = useState(false);
     const [isRemoveMode, setIsRemoveMode] = useState(false);
     const [isAddMode, setIsAddMode] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(dummyImages[0].url);
-    const [windowStart, setWindowStart] = useState(0);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const centerIdx = windowStart + 1; // since VISIBLE_COUNT is 3
-        if (dummyImages[centerIdx]) {
-            setSelectedImage(dummyImages[centerIdx].url);
-        }
-    }, [windowStart]);
+    // Data collection settings
+    const [editROI, setEditROI] = useState(true);
+    const [confidence, setConfidence] = useState(75);
+    const [detectFrames, setDetectFrames] = useState(30);
+    const [intervalFrames, setIntervalFrames] = useState(5);
+    const [motionDetection, setMotionDetection] = useState(true);
+    const [minMotionArea, setMinMotionArea] = useState(100);
 
     return (
         <div className="polygon-editor">
-            <header className="editor-header">
-                <img src={logo} alt="logo" className="logo" />
-            </header>
-            <main className="editor-main">
-                <div className="left-panel">
-                    <ImageList
-                        images={dummyImages}
-                        selectedImage={selectedImage}
-                        onSelectImage={setSelectedImage}
-                        windowStart={windowStart}
-                        setWindowStart={setWindowStart}
-                    />
-                    <div className="toggles">
-                        <ToggleSwitch
-                            label="Edit Mode"
-                            isChecked={isEditMode}
-                            onChange={() => setIsEditMode(!isEditMode)}
-                        />
-                        <ToggleSwitch
-                            label="Remove Mode"
-                            isChecked={isRemoveMode}
-                            onChange={() => setIsRemoveMode(!isRemoveMode)}
-                        />
-                        <ToggleSwitch
-                            label="Add Mode"
-                            isChecked={isAddMode}
-                            onChange={() => setIsAddMode(!isAddMode)}
-                        />
+            <TopNavBar onMobileMenuToggle={() => setMobileMenuOpen(!mobileMenuOpen)} />
+            <div className="main-layout">
+                <Sidebar
+                    collapsed={sidebarCollapsed}
+                    mobileOpen={mobileMenuOpen}
+                    onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+                    onMobileClose={() => setMobileMenuOpen(false)}
+                />
+                <div className={`content-area ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+                    <div className="page-header">
+                        <div className="breadcrumb">
+                            <span>Home</span> &gt; <span>Camera</span> &gt; <span>Dashboard</span> &gt; <span className="current">Camera Zone Edit</span>
+                        </div>
+                        <h1>Camera Zone Edit</h1>
+                    </div>
+
+                    <div className="main-content">
+                        <div className="left-content-panel">
+                            <DataCollectionPanel
+                                editROI={editROI}
+                                setEditROI={setEditROI}
+                                confidence={confidence}
+                                setConfidence={setConfidence}
+                                detectFrames={detectFrames}
+                                setDetectFrames={setDetectFrames}
+                                intervalFrames={intervalFrames}
+                                setIntervalFrames={setIntervalFrames}
+                                motionDetection={motionDetection}
+                                setMotionDetection={setMotionDetection}
+                                minMotionArea={minMotionArea}
+                                setMinMotionArea={setMinMotionArea}
+                                isEditMode={isEditMode}
+                                setIsEditMode={setIsEditMode}
+                                isRemoveMode={isRemoveMode}
+                                setIsRemoveMode={setIsRemoveMode}
+                                isAddMode={isAddMode}
+                                setIsAddMode={setIsAddMode}
+                            />
+                        </div>
+                        <div className="right-content-panel">
+                            <Canvas
+                                selectedImage={cameraImage}
+                                isEditMode={isEditMode}
+                                isRemoveMode={isRemoveMode}
+                                isAddMode={isAddMode}
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className="right-panel">
-                    <Canvas
-                        selectedImage={selectedImage}
-                        isEditMode={isEditMode}
-                        isRemoveMode={isRemoveMode}
-                        isAddMode={isAddMode}
-                    />
-                </div>
-            </main>
+            </div>
         </div>
     );
 };

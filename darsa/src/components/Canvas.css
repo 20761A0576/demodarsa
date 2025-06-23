@@ -1,23 +1,75 @@
+.camera-preview-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.camera-overlay-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px;
+    pointer-events: none;
+}
+
+.collection-zone-label {
+    background: rgba(34, 197, 94, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+.timestamp {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: monospace;
+}
+
 .canvas-container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
+    min-height: 300px;
+    background-color: #f6f2f2;
+    overflow: hidden;
+    flex: 1;
 }
 
 .main-image {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     display: block;
 }
 
 .overlay-svg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: default;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
 }
 
 .overlay-svg.add-mode {
@@ -26,22 +78,271 @@
 
 .polygon-handle {
     fill: #fff;
-    stroke: #00C853;
+    stroke: var(--primary-color);
     stroke-width: 2;
     cursor: pointer;
-    /* Add shadow for visibility */
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12));
 }
 
 .polygon-handle:hover {
-    fill: #b9f6ca;
-    stroke: #00C853;
+    fill: #e1f5fe;
+    stroke: var(--primary-light);
 }
 
 .polygon {
-    stroke: #00C853;
-    fill: rgba(0,200,83,0.08);
+    stroke: var(--primary-color);
+    fill: rgba(13, 44, 84, 0.1);
     stroke-width: 2;
+    transition: all 0.2s ease;
+}
+
+.polygon.selected {
+    stroke: var(--secondary-color);
+    fill: rgba(248, 112, 96, 0.1);
+    stroke-width: 3;
+}
+
+.polygon:hover {
+    stroke-width: 3;
+    filter: brightness(1.1);
+}
+
+/* Add mode hover effect for existing polygons */
+.overlay-svg.add-mode .polygon:hover {
+    stroke: var(--secondary-color);
+    stroke-width: 3;
+    filter: brightness(1.2);
+    stroke-dasharray: 8,4;
+    animation: dash-add 1s linear infinite;
+}
+
+@keyframes dash-add {
+    to {
+        stroke-dashoffset: -12;
+    }
+}
+
+.current-polygon {
+    stroke: var(--secondary-color);
+    fill: rgba(248, 112, 96, 0.2);
+    stroke-width: 2;
+    stroke-dasharray: 5,5;
+    animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -10;
+    }
+}
+
+.canvas-controls {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 244, 244, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mode-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mode-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mode-badge.add-mode {
+    background: var(--secondary-color);
+}
+
+.mode-badge.edit-mode {
+    background: var(--primary-color);
+}
+
+.mode-badge.remove-mode {
+    background: #ef4444;
+}
+
+.drawing-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.control-btn {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    backdrop-filter: blur(5px);
+}
+
+.complete-btn {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.complete-btn:hover:not(:disabled) {
+    background: var(--secondary-dark);
+}
+
+.complete-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.cancel-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: #dc2626;
+}
+
+.polygon-info {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(230, 104, 73, 0.8);
+    font-weight: 500;
+}
+
+.polygon-label {
+    font-family: 'Roboto', 'Lato', sans-serif;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Touch and scroll support */
+.camera-preview-container {
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+}
+
+.overlay-svg {
+    touch-action: none;
+}
+
+/* Responsive styles for canvas controls */
+@media (max-width: 992px) {
+    .camera-preview-container {
+        min-height: 350px;
+    }
+
+    .canvas-container {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .camera-preview-container {
+        min-height: 300px;
+        border-radius: 8px;
+    }
+
+    .canvas-container {
+        min-height: 200px;
+    }
+
+    .canvas-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 12px;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        margin-top: 8px;
+        background: rgba(0, 0, 0, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+    }
+
+    .mode-indicator {
+        justify-content: center;
+    }
+
+    .drawing-controls {
+        justify-content: center;
+    }
+
+    .polygon-info {
+        justify-content: center;
+        font-size: 11px;
+    }
+
+    .control-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .mode-badge {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 576px) {
+    .camera-overlay-top {
+        padding: 12px;
+    }
+
+    .collection-zone-label,
+    .timestamp {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .canvas-controls {
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        padding: 6px 8px;
+        background: rgba(0, 0, 0, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+    }
+
+    .polygon-handle {
+        r: 8;
+    }
+
+    .polygon-label {
+        font-size: 10px;
+    }
 }
 
 .polygon-point {
@@ -53,4 +354,52 @@
 
 .polygon-point:hover {
     fill: var(--primary-color);
-} 
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .polygon-handle {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .polygon {
+    stroke-width: 1.5;
+  }
+}
+
+@media (max-width: 576px) {
+  .polygon-handle {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .polygon {
+    stroke-width: 1;
+  }
+}
+
+/* Add orientation change handling */
+@media screen and (orientation: portrait) {
+  .canvas-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 992px) {
+  .canvas-container {
+    height: 80vh;
+  }
+}
+
+/* Ensure no gaps around canvas */
+.camera-preview-container {
+  margin-bottom: 0;
+}
+
+/* Fix any potential layout issues */
+.right-content-panel .camera-preview-container {
+  height: 100%;
+  flex: 1;
+}

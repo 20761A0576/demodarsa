@@ -1,0 +1,145 @@
+.top-nav-bar {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    max-width: 100%;
+    position: relative;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-image {
+    height: 32px;
+    width: auto;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.nav-icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #6b7280;
+    transition: all 0.2s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon-btn:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.toggle-btn {
+    color: #f97316;
+}
+
+.toggle-btn:hover {
+    background-color: #fff7ed;
+}
+
+.notification-btn {
+    position: relative;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.profile-btn:hover {
+    color: #f97316;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-content {
+        padding: 0 16px;
+    }
+
+    .nav-logo {
+        position: static;
+        transform: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .nav-icon-btn {
+        padding: 6px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-content {
+        padding: 0 12px;
+    }
+
+    .logo-image {
+        height: 28px;
+    }
+
+    .nav-actions {
+        gap: 4px;
+    }
+}

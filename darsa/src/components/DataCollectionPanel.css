@@ -1,0 +1,349 @@
+.data-collection-panel {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    height: fit-content;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 24px 0;
+    font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.control-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-family: 'Roboto', 'Lato', sans-serif;
+    flex: 1;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    max-width: 200px;
+}
+
+.confidence-slider {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e5e7eb;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.confidence-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.confidence-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slider-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    min-width: 40px;
+    text-align: right;
+}
+
+.number-input-container {
+    display: flex;
+    align-items: center;
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0;
+    max-width: 120px;
+}
+
+.number-input {
+    border: none;
+    background: transparent;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #374151;
+    outline: none;
+    width: 60px;
+    text-align: center;
+}
+
+.input-suffix {
+    padding: 8px 12px 8px 0;
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.add-zone-btn {
+    background: var(--secondary-color);
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.add-zone-btn:hover {
+    background: var(--secondary-dark);
+}
+
+.add-zone-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.polygon-tools {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 70px;
+    justify-content: center;
+}
+
+.tool-btn:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    background: #fff7ed;
+}
+
+.tool-btn.active {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.tool-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.tool-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tool-btn:disabled:hover {
+    border-color: #d1d5db;
+    color: #374151;
+    background: white;
+}
+
+.instructions-panel {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.instructions-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-family: 'Roboto', 'Lato', sans-serif;
+}
+
+.instructions-content {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.instruction-list {
+    margin: 0;
+    padding-left: 16px;
+    list-style-type: disc;
+}
+
+.instruction-list li {
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.instruction-text {
+    margin: 0;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+kbd {
+    background: #374151;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+/* Custom scrollbar for data collection panel */
+.data-collection-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+.data-collection-panel::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 2px;
+}
+
+.data-collection-panel::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 2px;
+}
+
+.data-collection-panel::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}
+
+/* Firefox scrollbar */
+.data-collection-panel {
+    scrollbar-width: thin;
+    scrollbar-color: #e2e8f0 #f8fafc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .data-collection-panel {
+        max-height: none;
+        overflow-y: visible;
+        margin-bottom: 20px;
+    }
+
+    .polygon-tools {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-collection-panel {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .control-group {
+        margin-bottom: 16px;
+    }
+
+    .control-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .control-label {
+        text-align: left;
+        margin-bottom: 4px;
+    }
+
+    .slider-container {
+        max-width: none;
+        width: 100%;
+    }
+
+    .number-input-container {
+        max-width: none;
+        width: 100%;
+    }
+
+    .polygon-tools {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .tool-btn {
+        flex: 1;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .data-collection-panel {
+        padding: 16px;
+    }
+
+    .panel-title {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .control-group {
+        margin-bottom: 14px;
+    }
+
+    .tool-btn {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+
+    .instructions-panel {
+        margin-top: 20px;
+        padding: 12px;
+    }
+
+    .instructions-title {
+        font-size: 13px;
+    }
+
+    .instructions-content {
+        font-size: 11px;
+    }
+}
