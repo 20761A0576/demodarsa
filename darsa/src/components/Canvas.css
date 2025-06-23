@@ -17,6 +17,10 @@
     left: 0;
     width: 100%;
     height: 100%;
+    cursor: default;
+}
+
+.overlay-svg.add-mode {
     cursor: crosshair;
 }
 

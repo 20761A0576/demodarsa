@@ -88,7 +88,7 @@ const Canvas = ({ selectedImage, isRemoveMode, isEditMode, isAddMode }) => {
             />
             <svg
                 ref={svgRef}
-                className="overlay-svg"
+                className={`overlay-svg ${isAddMode ? 'add-mode' : ''}`}
                 onClick={handleCanvasClick}
                 style={{ width: imageDimensions.width, height: imageDimensions.height }}
             >
