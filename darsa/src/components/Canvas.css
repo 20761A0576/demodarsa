@@ -24,9 +24,23 @@
     cursor: crosshair;
 }
 
+.polygon-handle {
+    fill: #fff;
+    stroke: #00C853;
+    stroke-width: 2;
+    cursor: pointer;
+    /* Add shadow for visibility */
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12));
+}
+
+.polygon-handle:hover {
+    fill: #b9f6ca;
+    stroke: #00C853;
+}
+
 .polygon {
-    fill: rgba(248, 112, 96, 0.4);
-    stroke: var(--secondary-color);
+    stroke: #00C853;
+    fill: rgba(0,200,83,0.08);
     stroke-width: 2;
 }
 

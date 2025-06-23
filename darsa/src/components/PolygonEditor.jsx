@@ -3,7 +3,7 @@ import ImageList from './ImageList';
 import Canvas from './Canvas';
 import ToggleSwitch from './ToggleSwitch';
 import './PolygonEditor.css';
-import logo from '../assets/darsa.svg';
+import logo from '../assets/darsa.png';
 
 const dummyImages = Array.from({ length: 10 }, (_, i) => ({
     id: i,
