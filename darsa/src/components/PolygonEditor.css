@@ -8,20 +8,20 @@
     --dark-gray: #333;
 }
 
-/* html, body {
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
-} */
+}
 
 .polygon-editor {
-    /* min-height: 100vh;
-    min-width: 100vw; */
+    min-height: 100vh;
+    min-width: 100vw;
     height: 100vh;
-    /* width: 100vw;
+    width: 100vw;
     box-sizing: border-box;
-    overflow: hidden; */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     background-color: var(--light-gray);
@@ -29,7 +29,7 @@
 }
 
 .editor-header {
-    /* padding: 1rem; */
+    padding: 1rem;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
@@ -47,8 +47,9 @@
 
 .left-panel {
     width: 30%;
+    height: 100vh;
     background-color: white;
-    /* padding: 1rem; */
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -56,8 +57,10 @@
 }
 
 .right-panel {
-    width: 70%;
-    /* padding: 1rem; */
+    width: 100vw;
+    height: 85vh;
+    background-color: white;
+    padding: 1rem;
     overflow-y: auto;
 }
 

@@ -105,3 +105,30 @@
 .dot.active {
     background: var(--secondary-color);
 } 
+
+/* @media (max-width: 768px) {
+    .image-list {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+    .thumbnail {
+        height: 80px;
+    }
+    .carousel-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+    .carousel-thumbnail.center {
+        width: 90px;
+        height: 90px;
+    }
+    .image-arrow {
+        width: 30px;
+        height: 30px;
+    }
+    .carousel-images {
+        gap: 10px;
+    }
+    .carousel-dots {
+        gap: 4px;
+    }
+} */
