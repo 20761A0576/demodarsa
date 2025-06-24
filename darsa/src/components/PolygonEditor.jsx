@@ -36,9 +36,9 @@ const PolygonEditor = () => {
                 />
                 <div className={`content-area ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
                     <div className="page-header">
-                        <div className="breadcrumb">
+                        {/* <div className="breadcrumb">
                             <span>Home</span> &gt; <span>Camera</span> &gt; <span>Dashboard</span> &gt; <span className="current">Camera Zone Edit</span>
-                        </div>
+                        </div> */}
                         <h1>Camera Zone Edit</h1>
                     </div>
 
