@@ -32,16 +32,15 @@ const DataCollectionPanel = ({
                     <ToggleSwitch
                         isChecked={!editROI}
                         onChange={() => {
-                            setEditROI(!editROI);
-                            if(!editROI){
-                                setIsEditMode(false);
-                            }else{
-                                setIsEditMode(true);
+                                setEditROI(!editROI);
+                                if(!editROI){
+                                    setIsEditMode(false);
+                                }else{
+                                    setIsEditMode(true);
+                                }
+                                setIsRemoveMode(false);
+                                setIsAddMode(false);
                             }
-                            setIsRemoveMode(false);
-                            setIsAddMode(false);
-                        }
-
                         }
                     />
                 </div>
